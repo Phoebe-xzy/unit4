@@ -1,14 +1,24 @@
 //unit 4 Advanced Drawing Project
 color brickRed = #463f3a;
 color moon = #f8edeb;
-color cherryPink = #f9bec7;
-
+color cherryPink = #ffe5ec;
+color butterCream = #fefae0;
+color darkYellow = #ffbd00;
+color darkPink = #ffc2d1;
+int i = 0;
 void setup(){
   size(800, 800);
   background(0);
   strokeWeight(2);
   walls();
   Moon();
+  //flower();
+  while (i < 8){
+    flower();
+    i = i +1;
+  
+  }
+    
 }
 
 void draw(){
@@ -47,6 +57,38 @@ void walls(){
   popMatrix();
 }
 
+
+
+void flower(){
+  float x = random(0, 800);
+  float y = random(400, 600);
+  pushMatrix();
+  translate(x, y);
+  
+  // center
+  fill(255, 204, 0);
+  circle(0, 0, 25);
+  stroke(darkYellow);
+  fill(butterCream);
+
+  // petals
+  rotate(1.5);
+  scale(0.8);
+  float angle = 0;
+  while (angle <= TWO_PI) {
+    pushMatrix();
+    rotate(angle);
+    ellipse(0, -30, 20, 40); // draw petal upward, rotated around center
+    fill(cherryPink);
+    stroke(darkPink);
+    popMatrix();
+    angle += PI / 4; // 30 degrees per petal (12 total)
+  }
+
+  popMatrix();
+}
+
+//sky functions
 void Moon(){
   pushMatrix();
   float x = random(50,750);
@@ -62,17 +104,9 @@ void Moon(){
   popMatrix();
 }
 
-void flower(){
-  float x = random(0, 800);
-  float y = random(300, 650);
-  pushMatrix();
-  translate(x, y);
-  circle(0, 0, 20);
-  //pedals
-  
-  
-  
-  
-  popMatrix();
+void star(){
+
+
+
 
 }
