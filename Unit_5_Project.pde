@@ -18,9 +18,17 @@ boolean downKey, upKey, leftKey, rightKey;
 float ballx, bally, balld;
 float vx = 1, vy = -20;
 float ax, ay;
+int point;
+
+//whole variable
+float holex, holey, holed = 150;
 
 void setup(){
   size(600, 600);
+  
+  holex = width/2;
+  holey = height;
+  
   x = width/2 - 200;
   y = height/2;
   d = 100;
@@ -53,7 +61,15 @@ void draw(){
   //bouncing circle
   fill(lightBlue);
   circle(ballx, bally, balld);
+  
+  //hole
+  fill(black);
+  circle(holex, holey, holed);
 
+  textSize(40);
+  textAlign(CENTER, CENTER);
+  fill(255, 0, 0);
+  text(point, x, y);
   
    //movement
   ballx += vx;
@@ -87,9 +103,25 @@ void draw(){
     
   if (dist(x, y, ballx, bally) <= d/2 + balld/2){
     
-    vx = vy = 0;
+    vx = (ballx - x)/5 ;
+    
+    vy = (bally - y)/5 ;
+    
       
     }
+  
+  if (dist(p, q, ballx, bally) <= d/2 + balld/2){
+    
+    vx = (ballx - p)/5 ;
+    
+    vy = (bally - q)/5 ;
+      
+    }
+    
+  if (dist(holex, holey, ballx, bally) <= holed/2 + balld/2){
+     point = point + 1;
+  
+  }
   
   if (aKey) x = x - 5;
   if (dKey) x = x + 5;
@@ -100,6 +132,8 @@ void draw(){
   if(leftKey) p = p-5;
   if(upKey) q = q -5;
   if(downKey) q = q +5;
+  
+  
   
 }
 
